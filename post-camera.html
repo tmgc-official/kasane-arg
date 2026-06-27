@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拾ったフィルムカメラを現像してみた｜かさねのにちじょう</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fafaf7;color:#333;font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro',Meiryo,sans-serif;font-size:15px;line-height:1.8}
+header{background:#fff;border-bottom:2px solid #e8ddd0;padding:1.5rem 2rem;text-align:center}
+.blog-title{font-size:1.5rem;font-weight:normal;color:#5a4030;letter-spacing:0.15em}
+.blog-sub{font-size:0.72rem;color:#b8a898;margin-top:0.3rem;letter-spacing:0.05em}
+nav{background:#f5ede0;padding:0.6rem 2rem;display:flex;gap:2rem;align-items:center;border-bottom:1px solid #e8ddd0;font-size:0.75rem;flex-wrap:wrap}
+nav a{color:#8a6a50;text-decoration:none}
+nav a:hover{color:#3a2010;text-decoration:underline}
+.nav-search{margin-left:auto;display:flex;gap:0.4rem;align-items:center}
+.nav-search input{border:1px solid #d8c8b8;border-radius:12px;padding:0.28rem 0.75rem;font-size:0.72rem;font-family:inherit;outline:none;background:#fffdf9;color:#5a4030;width:145px}
+.nav-search input:focus{border-color:#c9987a}
+.nav-search button{background:#c9987a;color:#fff;border:none;border-radius:12px;padding:0.28rem 0.7rem;font-size:0.7rem;cursor:pointer;font-family:inherit}
+.nav-search button:hover{background:#b07858}
+.container{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem}
+.post-date{font-size:0.7rem;color:#b8a898;letter-spacing:0.15em;margin-bottom:0.5rem}
+.post-title-main{font-size:1.25rem;font-weight:normal;color:#3a2010;padding-bottom:1.2rem;border-bottom:1px solid #e8ddd0;margin-bottom:2rem}
+.post-body{color:#555;line-height:2.4;margin-bottom:2.5rem}
+.post-body p{margin-bottom:1.2rem}
+.post-body .post-img{width:100%;display:block;margin:1.4rem 0;border-radius:2px;max-height:420px;object-fit:cover}
+
+/* Photo grid */
+.section-label{font-size:0.72rem;color:#b8a898;letter-spacing:0.2em;margin-bottom:1rem;text-align:center}
+.photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin-bottom:2rem}
+@media(min-width:560px){.photo-grid{grid-template-columns:repeat(3,1fr)}}
+.photo-item{}
+.photo-frame{aspect-ratio:3/2;overflow:hidden;background:#d8d0c8;position:relative;transition:filter 0.05s;cursor:pointer}
+.photo-frame:hover{opacity:0.9}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.ph-normal{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#ccc8c0;color:#a09880;font-size:0.65rem;letter-spacing:0.1em}
+.ph-dark{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#050505}
+.secret-text{color:#181818;font-family:'游明朝','Yu Mincho',serif;font-size:clamp(0.7rem,2vw,1rem);letter-spacing:0.25em;text-align:center;line-height:2;pointer-events:none}
+/* Photo 24: Chrome screenshot recreation
+   brightness 100% = almost invisible / brightness 800% = looks like real Chrome
+   Color math: source * 8 = visible color
+   #202020 *8 = #ffffff (Chrome toolbar white)
+   #1a1a1a *8 = #d0d0d0 (URL input gray)
+   #19120c *8 = #c89060 (amber text)
+*/
+.screen-photo{width:100%;height:100%;background:#010101;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.chrome-toolbar{background:#060606;padding:5px 10px;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.chrome-urlwrap{flex:1;background:#0a0a0a;border-radius:20px;padding:5px 14px;display:flex;align-items:center;gap:6px;border:1px solid #111}
+.chrome-icon{width:12px;height:12px;border-radius:50%;border:1.5px solid #161616;flex-shrink:0}
+.chrome-url{color:#161616;font-size:clamp(7px,1.1vw,12px);font-family:Arial,'Hiragino Kaku Gothic Pro',sans-serif;letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chrome-page{flex:1;background:#030303;display:flex;align-items:center;justify-content:flex-start;padding:0 1.4rem;position:relative}
+.chrome-text{font-family:'游明朝','Yu Mincho',serif;color:#19120c;font-size:clamp(8px,1.5vw,14px);letter-spacing:0.2em}
+/* Thumbnail version */
+.thumb-screen{width:100%;height:100%;background:#010101;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.thumb-toolbar{background:#1e1e1e;height:14%;flex-shrink:0;display:flex;align-items:center;padding:0 6px}
+.thumb-urlbar{flex:1;background:#181818;border-radius:10px;height:60%;margin:0 4px}
+.thumb-page{flex:1;background:#030303;display:flex;align-items:center;justify-content:center}
+.thumb-page-text{font-family:serif;color:#17110b;font-size:8px;letter-spacing:0.1em}
+.shadow-thumb{width:35%;height:58%;background:rgba(255,255,255,0.04);border-radius:50% 50% 30% 30%;filter:blur(4px);margin-top:12%}
+.shadow-fig{width:80px;height:190px;background:rgba(255,255,255,0.05);border-radius:50% 50% 30% 30%;filter:blur(14px)}
+.s-label{font-size:0.58rem;color:#b8a898;white-space:nowrap}
+input[type=range]{flex:1;height:2px;cursor:pointer;accent-color:#c9987a}
+.photo-num{font-size:0.58rem;color:#ccc0b0;text-align:right;margin-top:0.15rem}
+
+/* Single photo viewer */
+.viewer-wrap{margin-bottom:2.5rem}
+.viewer-frame{width:100%;aspect-ratio:3/2;overflow:hidden;position:relative;border-radius:2px;background:#d8d0c8;cursor:pointer}
+#viewer-content{position:absolute;inset:0;width:100%;height:100%}
+#viewer-content img{width:100%;height:100%;object-fit:cover;display:block}
+.viewer-footer{margin-top:0.9rem}
+.viewer-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8rem}
+.viewer-meta{font-size:0.75rem;color:#b8a898;letter-spacing:0.15em;text-align:center}
+.viewer-meta strong{font-size:1.1rem;color:#5a4030;font-weight:bold;margin:0 0.3rem}
+.nav-btn{background:transparent;border:1px solid #d8c8b8;color:#8a7060;padding:0.4rem 0.9rem;font-size:0.72rem;letter-spacing:0.1em;cursor:pointer;font-family:inherit;border-radius:2px;transition:border-color 0.2s,color 0.2s}
+.nav-btn:hover{border-color:#c9987a;color:#5a4030}
+.nav-btn:disabled{opacity:0.25;cursor:default;border-color:#e8ddd0}
+.viewer-controls{display:flex;align-items:center;gap:0.7rem}
+
+/* Photo modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-inner{position:relative;display:flex;flex-direction:column;align-items:center;max-width:min(92vw,720px);width:100%}
+.modal-close{position:absolute;top:-2.2rem;right:0;background:none;border:none;color:#aaa;font-size:1.6rem;cursor:pointer;line-height:1;padding:0.2rem 0.4rem}
+.modal-close:hover{color:#fff}
+.modal-photo{width:100%;max-height:72vh;object-fit:contain;display:block;background:#111}
+.modal-dark{width:100%;aspect-ratio:3/2;background:#050505;display:flex;align-items:center;justify-content:center}
+.modal-controls{display:flex;align-items:center;gap:0.7rem;margin-top:0.9rem;width:100%}
+.modal-num{font-size:0.65rem;color:#888;white-space:nowrap;margin-left:auto}
+
+/* Tags */
+.tags{margin-top:2rem;font-size:0.7rem;color:#b8a898}
+.tag{display:inline-block;background:#f0e8dc;padding:0.2rem 0.5rem;margin:0.2rem 0.2rem 0 0;border-radius:2px;color:#8a7060}
+.back-link{display:inline-block;font-size:0.75rem;color:#8a6a50;text-decoration:none;margin-bottom:2rem}
+.back-link:hover{text-decoration:underline}
+
+footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;border-top:1px solid #e8ddd0;margin-top:4rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="blog-title">かさねのにちじょう</div>
+  <div class="blog-sub">日々のできごとをつらつらと</div>
+</header>
+<nav>
+  <a href="blog.html">ホーム</a>
+  <a href="profile.html">プロフィール</a>
+  <form class="nav-search" onsubmit="goSearch(event)">
+    <input type="text" id="nav-q" placeholder="Tanuki Searchで調べる…">
+    <button type="submit">検索</button>
+  </form>
+</nav>
+<div class="container">
+  <a href="blog.html" class="back-link">← ホームへ戻る</a>
+  <div class="post-date">2024.04.02</div>
+  <div class="post-title-main">拾ったフィルムカメラを現像してみた</div>
+  <div class="post-body">
+    <p>こんにちは、かさねです。</p>
+    <p>先週、地元の商店街を歩いてたら<br>
+    シャッターの前に透明なケースが置いてあって<br>
+    「ご自由にお持ちください」って書いてあったんです。</p>
+    <img src="images/found.jpg.png" alt="商店街のシャッター前に置かれた透明ケース" class="post-img">
+    <p>夜の雰囲気も相まって、ちょっと怖かったんだけど、<br>
+    中にフィルムカメラが入ってて、<br>
+    なんか面白そうで、つい持って帰っちゃいました。笑</p>
+    <p>現像に出したら、誰かの写真が24枚入ってた。</p>
+    <p>最初のほうは、女の子ふたりで出かけてる写真とか、猫とか、<br>
+    カフェっぽいところでコーヒー飲んでる写真とか。<br>
+    見てたらなんかほっこりして、いいお友達なんだな〜ってなった。</p>
+    <p>でも途中からなんか、ちょっとよくわかんなくて。<br>
+    なんか、不気味というか...う〜んってなった。</p>
+    <p>とりあえず全部アップしてみるね。</p>
+  </div>
+
+  <div class="viewer-wrap">
+    <div class="viewer-frame" id="viewer-frame" onclick="nextPhoto()">
+      <div id="viewer-content"></div>
+    </div>
+    <div class="viewer-footer">
+      <div class="viewer-nav">
+        <button class="nav-btn" id="prev-btn" onclick="prevPhoto()">← 前の写真</button>
+        <div class="viewer-meta">写真 <strong id="viewer-num">01</strong> / 24</div>
+        <button class="nav-btn" id="next-btn" onclick="nextPhoto()">次の写真 →</button>
+      </div>
+      <div class="viewer-controls">
+        <span class="s-label">明るさ</span>
+        <input type="range" min="50" max="800" value="100" id="viewer-slider"
+               oninput="document.getElementById('viewer-content').style.filter='brightness('+this.value+'%)'">
+      </div>
+    </div>
+  </div>
+
+  <div class="tags">
+    <span class="tag">#フィルムカメラ</span>
+    <span class="tag">#写真</span>
+    <span class="tag">#商店街</span>
+    <span class="tag">#拾いもの</span>
+    <span class="tag">#現像</span>
+  </div>
+</div>
+
+<footer>
+  &copy; kasane's diary 2024 &nbsp;|&nbsp; 無断転載禁止
+</footer>
+
+<script>
+let cur = 1;
+
+function renderPhoto(i) {
+  cur = i;
+  const n = String(i).padStart(2, '0');
+  const content = document.getElementById('viewer-content');
+  const frame = document.getElementById('viewer-frame');
+
+  document.getElementById('viewer-slider').value = 100;
+  content.style.filter = 'brightness(100%)';
+  document.getElementById('viewer-num').textContent = n;
+  document.getElementById('prev-btn').disabled = (i === 1);
+  document.getElementById('next-btn').disabled = (i === 24);
+  frame.style.cursor = (i < 24) ? 'pointer' : 'default';
+
+  if (i === 24) {
+    content.innerHTML = '<div class="screen-photo"><div class="chrome-toolbar"><div class="chrome-urlwrap"><div class="chrome-icon"></div><div class="chrome-url">▒▒▒▒:▓░▒▓░▒▓░▒▓░▒▓░▒/secret.html</div></div></div><div class="chrome-page"><div class="chrome-text">返してください</div></div></div>';
+  } else if (i === 22 || i === 23) {
+    content.innerHTML = '<div style="width:100%;height:100%;background:#010101"></div>';
+  } else {
+    content.innerHTML = `<img src="images/photos${n}.jpg.png" alt="写真${n}"
+      onerror="this.outerHTML='<div class=\\'ph-normal\\'>${n}</div>'"
+      style="width:100%;height:100%;object-fit:cover;display:block">`;
+  }
+}
+
+function nextPhoto() { if (cur < 24) renderPhoto(cur + 1); }
+function prevPhoto() { if (cur > 1) renderPhoto(cur - 1); }
+
+function goSearch(e) {
+  e.preventDefault();
+  const q = document.getElementById('nav-q').value.trim();
+  if (q) window.location.href = 'search.html#' + encodeURIComponent(q);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') nextPhoto();
+  if (e.key === 'ArrowLeft') prevPhoto();
+});
+
+renderPhoto(1);
+</script>
+</body>
+</html>

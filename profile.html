@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロフィール｜かさねのにちじょう</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fafaf7;color:#333;font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro',Meiryo,sans-serif;font-size:15px;line-height:1.8}
+header{background:#fff;border-bottom:2px solid #e8ddd0;padding:1.5rem 2rem;text-align:center}
+.blog-title{font-size:1.5rem;font-weight:normal;color:#5a4030;letter-spacing:0.15em}
+.blog-sub{font-size:0.72rem;color:#b8a898;margin-top:0.3rem;letter-spacing:0.05em}
+nav{background:#f5ede0;padding:0.6rem 2rem;display:flex;gap:2rem;align-items:center;border-bottom:1px solid #e8ddd0;font-size:0.75rem;flex-wrap:wrap}
+nav a{color:#8a6a50;text-decoration:none}
+nav a:hover{color:#3a2010;text-decoration:underline}
+nav a.active{color:#3a2010;font-weight:bold}
+.nav-search{margin-left:auto;display:flex;gap:0.4rem;align-items:center}
+.nav-search input{border:1px solid #d8c8b8;border-radius:12px;padding:0.28rem 0.75rem;font-size:0.72rem;font-family:inherit;outline:none;background:#fffdf9;color:#5a4030;width:145px}
+.nav-search input:focus{border-color:#c9987a}
+.nav-search button{background:#c9987a;color:#fff;border:none;border-radius:12px;padding:0.28rem 0.7rem;font-size:0.7rem;cursor:pointer;font-family:inherit}
+.nav-search button:hover{background:#b07858}
+.container{max-width:620px;margin:0 auto;padding:3rem 1.5rem}
+.page-label{font-size:0.7rem;color:#b8a898;letter-spacing:0.25em;margin-bottom:2rem;text-align:center}
+
+.profile-card{display:flex;gap:2rem;align-items:flex-start;margin-bottom:3rem;flex-wrap:wrap}
+.avatar{width:110px;height:110px;border-radius:50%;background:#e8ddd0;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#c9987a;border:3px solid #e0d0c0}
+.profile-info{flex:1;min-width:180px}
+.profile-name{font-size:1.3rem;font-weight:normal;color:#3a2010;letter-spacing:0.1em;margin-bottom:0.3rem}
+.profile-name-sub{font-size:0.7rem;color:#b8a898;letter-spacing:0.15em;margin-bottom:1rem}
+.profile-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem}
+.tag{display:inline-block;background:#f0e8dc;padding:0.2rem 0.6rem;border-radius:2px;font-size:0.7rem;color:#8a7060;letter-spacing:0.05em}
+
+hr{border:none;border-top:1px solid #e8ddd0;margin:2rem 0}
+
+.section-title{font-size:0.72rem;color:#b8a898;letter-spacing:0.25em;margin-bottom:1rem}
+.bio{color:#555;line-height:2.5;font-size:0.92rem}
+.bio p{margin-bottom:1rem}
+
+.likes-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-top:0.8rem}
+.like-item{background:#f8f4ef;border-left:2px solid #d8c8b0;padding:0.5rem 0.8rem;font-size:0.82rem;color:#6a5848}
+
+footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;border-top:1px solid #e8ddd0;margin-top:4rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="blog-title">かさねのにちじょう</div>
+  <div class="blog-sub">日々のできごとをつらつらと</div>
+</header>
+<nav>
+  <a href="blog.html">ホーム</a>
+  <a href="profile.html" class="active">プロフィール</a>
+  <form class="nav-search" onsubmit="goSearch(event)">
+    <input type="text" id="nav-q" placeholder="Tanuki Searchで調べる…">
+    <button type="submit">検索</button>
+  </form>
+</nav>
+<div class="container">
+  <div class="page-label">— PROFILE —</div>
+
+  <div class="profile-card">
+    <div class="avatar">🌿</div>
+    <div class="profile-info">
+      <div class="profile-name">かさね</div>
+      <div class="profile-name-sub">kasane</div>
+      <div class="profile-tags">
+        <span class="tag">27歳</span>
+        <span class="tag">主婦</span>
+        <span class="tag">ブロガー</span>
+        <span class="tag">関東在住</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="section-title">ABOUT</div>
+  <div class="bio">
+    <p>はじめまして、かさねです。</p>
+    <p>結婚を機にフルタイムの仕事を辞めて、今は家でのんびり暮らしています。毎日の小さなできごとや、気になったものを気ままに書き留めているブログです。文章を書くのが昔から好きで、特に何かを目指してるわけじゃないけど、続けています。</p>
+    <p>最近は近所の商店街をよく散歩するようになりました。シャッターが増えてきて少しさみしいけど、それでもなんか好きな場所です。</p>
+  </div>
+
+  <hr>
+
+  <div class="section-title">LIKES</div>
+  <div class="likes-grid">
+    <div class="like-item">コーヒー（浅煎り派）</div>
+    <div class="like-item">散歩・まちあるき</div>
+    <div class="like-item">フィルムカメラ（最近はじめた）</div>
+    <div class="like-item">古着・ヴィンテージ雑貨</div>
+    <div class="like-item">読書（エッセイ中心）</div>
+    <div class="like-item">料理（主に和食）</div>
+  </div>
+
+</div>
+<footer>
+  &copy; kasane's diary 2024 &nbsp;|&nbsp; 無断転載禁止
+</footer>
+<script>
+function goSearch(e) {
+  e.preventDefault();
+  const q = document.getElementById('nav-q').value.trim();
+  if (q) window.location.href = 'search.html#' + encodeURIComponent(q);
+}
+</script>
+</body>
+</html>

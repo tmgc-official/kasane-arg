@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanuki Search</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fff;color:#222;font-family:'Hiragino Kaku Gothic Pro',Meiryo,sans-serif;font-size:14px}
+.search-header{border-bottom:1px solid #e0e0e0;padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.site-logo{font-size:1.3rem;font-weight:bold;color:#4a4a8a;letter-spacing:0.05em;white-space:nowrap}
+.search-bar-wrap{flex:1;min-width:200px}
+.search-bar{width:100%;border:1px solid #ccc;border-radius:20px;padding:0.5rem 1rem;font-family:inherit;font-size:0.9rem;outline:none}
+.search-bar:focus{border-color:#4a4a8a;box-shadow:0 0 0 2px rgba(74,74,138,0.15)}
+.search-btn{background:#4a4a8a;color:#fff;border:none;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;font-size:0.85rem;white-space:nowrap}
+.search-tabs{display:flex;gap:0;border-bottom:1px solid #e0e0e0;padding:0 1.5rem}
+.tab{padding:0.7rem 1.2rem;font-size:0.82rem;color:#555;cursor:pointer;border-bottom:2px solid transparent}
+.tab.active{color:#4a4a8a;border-bottom-color:#4a4a8a}
+.results-wrap{max-width:680px;padding:1.5rem}
+.result-count{font-size:0.78rem;color:#777;margin-bottom:1.5rem}
+.result-item{margin-bottom:2rem}
+.result-url{font-size:0.72rem;color:#1a6b1a;margin-bottom:0.15rem;word-break:break-all}
+.result-title{font-size:1rem;color:#1a0dab;text-decoration:none;display:block;margin-bottom:0.2rem}
+.result-title:hover{text-decoration:underline}
+.result-snippet{font-size:0.82rem;color:#555;line-height:1.7}
+.result-snippet em{font-style:normal;font-weight:bold;color:#222}
+.no-result{color:#777;font-size:0.85rem;padding:2rem 0;line-height:2}
+.back-link{font-size:0.72rem;color:#888;text-decoration:none;cursor:pointer;white-space:nowrap}
+.back-link:hover{color:#333;text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="search-header">
+  <div class="site-logo">Tanuki Search</div>
+  <div class="search-bar-wrap">
+    <input type="text" class="search-bar" id="q" value="" placeholder="検索ワードを入力..." oninput="doSearch()">
+  </div>
+  <button class="search-btn" onclick="doSearch()">検索</button>
+  <a class="back-link" onclick="history.back();return false;" href="#">← ブログへ戻る</a>
+</div>
+<div class="search-tabs">
+  <div class="tab active">すべて</div>
+  <div class="tab">ニュース</div>
+  <div class="tab">画像</div>
+  <div class="tab">地図</div>
+</div>
+<div class="results-wrap" id="results"></div>
+
+<script>
+const DATA = [
+  {
+    keywords: ['ことり', '喫茶ことり', '喫茶', '珈琲', 'コーヒー'],
+    url: 'cafe-kotori.html',
+    displayUrl: 'cafe-kotori.html',
+    title: '喫茶 ことり — 公式サイト',
+    snippet: '商店街の小さな珈琲のお店。2016年オープン。<em>喫茶 ことり</em>は地域に愛される純喫茶です。【お知らせ】当店からのご案内をご覧ください。'
+  },
+  {
+    keywords: ['ことり', '閉店', '田中', '田中美香'],
+    url: 'news-01.html',
+    displayUrl: 'local-news.html > article > 2024-03',
+    title: '【閉店】喫茶ことり、突然の閉店…地域住民に惜しむ声｜地域ニュース',
+    snippet: '長年商店街で営業してきた<em>喫茶ことり</em>が2月中旬に突然閉店。行方不明となった従業員・<em>田中美香</em>さん（18）について家族が警察に相談中。常連客からは困惑の声が上がっている。'
+  },
+  {
+    keywords: ['松本美香', '行方不明', '失踪', '事件', '草凪', '逮捕'],
+    url: 'news-02.html',
+    displayUrl: 'local-news.html > article > 2024-03',
+    title: '【続報】女子高生を逮捕——大井戸公園で遺体発見、被害者は「松本美香」さんと判明｜地域ニュース',
+    snippet: '今年1月から行方不明だった<em>松本美香</em>さん（18）の遺体が<em>大井戸公園</em>の池から発見。容疑者として<em>草凪雪</em>（18）が逮捕された。「田中美香」は旧称（両親の離婚前）と判明。'
+  },
+  {
+    keywords: ['草凪', '草凪雪', 'くさなぎ', 'くさなぎゆき', '学生証'],
+    url: 'kusanagi-id.html',
+    displayUrl: '○○高等学校 > 在籍情報 > 2024-0318',
+    title: '草凪 雪 — 在籍情報｜○○高等学校',
+    snippet: '氏名：<em>草凪 雪</em>（くさなぎ ゆき）。学籍番号：2024-0318。第2学年3組。図書委員。最終更新：2024年1月。※このページは学内関係者のみ閲覧可能です。'
+  },
+  {
+    keywords: ['大井戸', '大井戸公園', '公園'],
+    url: 'news-park.html',
+    displayUrl: 'local-news.html > article > 2024-02',
+    title: '大井戸公園の池で溺死体を発見——身元は調査中｜地域ニュース',
+    snippet: '<em>大井戸公園</em>の池の中から水死体が発見。身元の特定を含む詳細は捜査当局が調査中。現在一部エリアが立入禁止となっている。'
+  },
+  {
+    keywords: ['商店街', '地域', 'まち'],
+    url: '#',
+    displayUrl: 'shotengai-local.jp > about',
+    title: '○○商店街振興組合 — 地域のにぎわいを守る',
+    snippet: '昭和から続く<em>商店街</em>。地域の皆さまに愛される個性豊かな店舗が集まっています。毎月第2土曜日にはマルシェを開催中。'
+  },
+  {
+    keywords: ['フィルムカメラ', '現像', 'カメラ', 'フィルム'],
+    url: '#',
+    displayUrl: 'camera-talk.net > film-guide',
+    title: 'フィルムカメラ入門——現像から楽しむアナログ写真',
+    snippet: '<em>フィルムカメラ</em>の現像方法を解説。ラボに持ち込む際の注意点、現像料金の目安、おすすめの現像店まで。懐かしい写真の風合いを楽しもう。'
+  },
+  {
+    keywords: ['アルバイト', 'バイト', '求人', 'パート'],
+    url: '#',
+    displayUrl: 'local-jobs.jp > part-time',
+    title: 'アルバイト・パート求人 — 地域の仕事探し',
+    snippet: '近くの<em>アルバイト</em>を探すなら。飲食・販売・事務など豊富な求人。時給・シフト条件で絞り込み可能。今すぐ応募できる求人多数。'
+  },
+  {
+    keywords: ['受験', '大学', '合格', '入試'],
+    url: '#',
+    displayUrl: 'juken-navi.jp > info',
+    title: '大学受験情報ナビ — 合格への道',
+    snippet: '<em>大学受験</em>の最新情報。偏差値・倍率・入試日程が一覧で確認できます。合格体験記も多数掲載。志望校選びから本番対策まで。'
+  },
+  {
+    keywords: ['天気', '雨', '晴れ', '予報'],
+    url: '#',
+    displayUrl: 'tenki-local.jp',
+    title: '地域の天気予報 — 最新気象情報',
+    snippet: '今週の<em>天気</em>は？週間予報や降水確率をチェック。外出や農業の参考に。過去の気象データも閲覧可能。'
+  },
+  {
+    keywords: ['ラーメン', 'グルメ', '飲食', '食事'],
+    url: '#',
+    displayUrl: 'gourmet-local.net > ramen',
+    title: '地元グルメ特集 2024 — 地域の人気店まとめ',
+    snippet: '地元で人気の飲食店を厳選。<em>ラーメン</em>・定食・カフェなど幅広いジャンルを掲載。テイクアウト対応店舗一覧付き。'
+  },
+  {
+    keywords: ['猫', 'ねこ', '動物'],
+    url: '#',
+    displayUrl: 'neko-local.jp',
+    title: '地域の猫情報まとめ — 地域猫・保護猫活動',
+    snippet: '地域の<em>猫</em>たちに関する情報。保護猫の里親募集、地域猫の管理方法など。動物好きの方のためのコミュニティです。'
+  },
+  {
+    keywords: ['桜', '花見', '春'],
+    url: '#',
+    displayUrl: 'sakura-spot.jp > local',
+    title: '地域の桜スポット — 花見情報 2024',
+    snippet: '今年の<em>桜</em>の開花情報。近隣の花見スポットを地図付きで紹介。大井戸公園をはじめ、各地のおすすめポイントをチェック。'
+  },
+  {
+    keywords: ['高校', '学校', '生徒', '学生'],
+    url: '#',
+    displayUrl: 'highschool-local.jp',
+    title: '地域の高校情報 — 進学ガイド',
+    snippet: '地元の<em>高校</em>一覧と入学情報。偏差値・学科・部活動から選べる進学ガイド。オープンスクール情報も随時更新。'
+  },
+];
+
+function doSearch() {
+  const q = document.getElementById('q').value.trim();
+  const wrap = document.getElementById('results');
+  if (!q) { wrap.innerHTML = ''; return; }
+
+  // スペース（全角含む）で分割し、各トークンをキーワードと完全一致で比較
+  const tokens = q.replace(/[　\s]+/g, ' ').trim().toLowerCase().split(' ').filter(Boolean);
+  const matched = DATA.filter(d =>
+    tokens.some(token => d.keywords.some(k => k.toLowerCase() === token))
+  );
+
+  if (matched.length === 0) {
+    wrap.innerHTML = `<div class="no-result">「${q}」に一致する結果は見つかりませんでした。<br><br>別のキーワードでお試しください。</div>`;
+    return;
+  }
+
+  wrap.innerHTML = `<div class="result-count">約 ${matched.length} 件の検索結果</div>` +
+    matched.map(r => `
+      <div class="result-item">
+        <div class="result-url">${r.displayUrl}</div>
+        <a class="result-title" href="${r.url}">${r.title}</a>
+        <div class="result-snippet">${r.snippet}</div>
+      </div>`).join('');
+}
+
+// ブログのnav検索バーからURLハッシュで渡されたクエリを読み込む
+const hashQ = decodeURIComponent(location.hash.slice(1));
+if (hashQ) document.getElementById('q').value = hashQ;
+doSearch();
+</script>
+</body>
+</html>

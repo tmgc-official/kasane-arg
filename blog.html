@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>かさねのにちじょう</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fafaf7;color:#333;font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro',Meiryo,sans-serif;font-size:15px;line-height:1.8}
+header{background:#fff;border-bottom:2px solid #e8ddd0;padding:1.5rem 2rem;text-align:center}
+.blog-title{font-size:1.5rem;font-weight:normal;color:#5a4030;letter-spacing:0.15em}
+.blog-sub{font-size:0.72rem;color:#b8a898;margin-top:0.3rem;letter-spacing:0.05em}
+nav{background:#f5ede0;padding:0.6rem 2rem;display:flex;gap:2rem;align-items:center;border-bottom:1px solid #e8ddd0;font-size:0.75rem;flex-wrap:wrap}
+nav a{color:#8a6a50;text-decoration:none}
+nav a:hover{color:#3a2010;text-decoration:underline}
+nav a.active{color:#3a2010;font-weight:bold}
+.nav-search{margin-left:auto;display:flex;gap:0.4rem;align-items:center}
+.nav-search input{border:1px solid #d8c8b8;border-radius:12px;padding:0.28rem 0.75rem;font-size:0.72rem;font-family:inherit;outline:none;background:#fffdf9;color:#5a4030;width:145px}
+.nav-search input:focus{border-color:#c9987a}
+.nav-search button{background:#c9987a;color:#fff;border:none;border-radius:12px;padding:0.28rem 0.7rem;font-size:0.7rem;cursor:pointer;font-family:inherit}
+.nav-search button:hover{background:#b07858}
+.container{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem}
+
+/* Post list */
+.post-item{padding:2rem 0;border-bottom:1px solid #e8ddd0}
+.post-item:first-child{padding-top:0}
+.post-item:last-child{border-bottom:none}
+.post-item-date{font-size:0.68rem;color:#b8a898;letter-spacing:0.15em;margin-bottom:0.4rem}
+.post-item-title{font-size:1.1rem;font-weight:normal;color:#3a2010;margin-bottom:0.7rem;line-height:1.6}
+.post-item-title a{color:inherit;text-decoration:none}
+.post-item-title a:hover{text-decoration:underline;color:#5a4030}
+.post-item-excerpt{font-size:0.88rem;color:#777;line-height:2.2;margin-bottom:1rem}
+.post-item-footer{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.post-tags{display:flex;flex-wrap:wrap;gap:0.3rem;flex:1}
+.tag{display:inline-block;background:#f0e8dc;padding:0.15rem 0.45rem;border-radius:2px;font-size:0.65rem;color:#8a7060}
+.read-more{font-size:0.75rem;color:#c9987a;text-decoration:none;white-space:nowrap}
+.read-more:hover{text-decoration:underline}
+
+footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;border-top:1px solid #e8ddd0;margin-top:3rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="blog-title">かさねのにちじょう</div>
+  <div class="blog-sub">日々のできごとをつらつらと</div>
+</header>
+<nav>
+  <a href="blog.html" class="active">ホーム</a>
+  <a href="profile.html">プロフィール</a>
+  <form class="nav-search" onsubmit="goSearch(event)">
+    <input type="text" id="nav-q" placeholder="Tanuki Searchで調べる…">
+    <button type="submit">検索</button>
+  </form>
+</nav>
+<div class="container">
+
+  <div class="post-item">
+    <div class="post-item-date">2024.04.22</div>
+    <div class="post-item-title"><a href="post-01.html">春野菜のおかず、2品作った</a></div>
+    <div class="post-item-excerpt">スーパーで春キャベツがちょうど安くて、煮浸しとコールスローを作りました。どっちも簡単なのにおいしくてお気に入りのレシピです。</div>
+    <div class="post-item-footer">
+      <div class="post-tags"><span class="tag">#料理</span><span class="tag">#日常</span></div>
+      <a href="post-01.html" class="read-more">続きを読む →</a>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <div class="post-item-date">2024.04.15</div>
+    <div class="post-item-title"><a href="post-02.html">ひさびさに本を読みきった</a></div>
+    <div class="post-item-excerpt">ずっと積んでたエッセイ集をやっと読み終わった。特別なことは書いてないのに、なんかじんわりくる文章で。何度でも読み返せそうな一冊。</div>
+    <div class="post-item-footer">
+      <div class="post-tags"><span class="tag">#読書</span><span class="tag">#エッセイ</span></div>
+      <a href="post-02.html" class="read-more">続きを読む →</a>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <div class="post-item-date">2024.04.08</div>
+    <div class="post-item-title"><a href="post-03.html">近所の古着屋さんでジャケットを買った</a></div>
+    <div class="post-item-excerpt">前から気になってたお店にやっと入れた。店内は狭いけどセンスのあるものがちょこちょこあって、思ったより長居してしまった。</div>
+    <div class="post-item-footer">
+      <div class="post-tags"><span class="tag">#古着</span><span class="tag">#おでかけ</span></div>
+      <a href="post-03.html" class="read-more">続きを読む →</a>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <div class="post-item-date">2024.04.02</div>
+    <div class="post-item-title"><a href="post-camera.html">拾ったフィルムカメラを現像してみた</a></div>
+    <div class="post-item-excerpt">商店街のシャッターの前に「ご自由にお持ちください」って書いた透明なケースが置いてあって、中にフィルムカメラが入ってた。現像したら誰かの写真が24枚入ってたんだけど……。</div>
+    <div class="post-item-footer">
+      <div class="post-tags"><span class="tag">#フィルムカメラ</span><span class="tag">#写真</span><span class="tag">#商店街</span></div>
+      <a href="post-camera.html" class="read-more">続きを読む →</a>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <div class="post-item-date">2024.03.26</div>
+    <div class="post-item-title"><a href="post-04.html">好きなマグカップが割れた話</a></div>
+    <div class="post-item-excerpt">何年も使ってたお気に入りのマグカップを朝に割ってしまった。小さいことなのに、なんかすごく落ち込んだ一日でした。</div>
+    <div class="post-item-footer">
+      <div class="post-tags"><span class="tag">#日常</span><span class="tag">#雑記</span></div>
+      <a href="post-04.html" class="read-more">続きを読む →</a>
+    </div>
+  </div>
+
+  <div class="post-item">
+    <div class="post-item-date">2024.03.19</div>
+    <div class="post-item-title"><a href="post-05.html">夫とドライブした日</a></div>
+    <div class="post-item-excerpt">特に行き先も決めないままドライブに出たら、道の駅で野菜を買って帰ってきた。こういうなんでもない休日がいちばん好きかもしれない。</div>
+    <div class="post-item-footer">
+      <div class="post-tags"><span class="tag">#おでかけ</span><span class="tag">#日常</span></div>
+      <a href="post-05.html" class="read-more">続きを読む →</a>
+    </div>
+  </div>
+
+</div>
+<footer>
+  &copy; kasane's diary 2024 &nbsp;|&nbsp; 無断転載禁止
+</footer>
+<script>
+function goSearch(e) {
+  e.preventDefault();
+  const q = document.getElementById('nav-q').value.trim();
+  if (q) window.location.href = 'search.html#' + encodeURIComponent(q);
+}
+</script>
+</body>
+</html>

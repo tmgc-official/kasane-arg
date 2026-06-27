@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夫とドライブした日｜かさねのにちじょう</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fafaf7;color:#333;font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro',Meiryo,sans-serif;font-size:15px;line-height:1.8}
+header{background:#fff;border-bottom:2px solid #e8ddd0;padding:1.5rem 2rem;text-align:center}
+.blog-title{font-size:1.5rem;font-weight:normal;color:#5a4030;letter-spacing:0.15em}
+.blog-sub{font-size:0.72rem;color:#b8a898;margin-top:0.3rem;letter-spacing:0.05em}
+nav{background:#f5ede0;padding:0.6rem 2rem;display:flex;gap:2rem;align-items:center;border-bottom:1px solid #e8ddd0;font-size:0.75rem;flex-wrap:wrap}
+nav a{color:#8a6a50;text-decoration:none}
+nav a:hover{color:#3a2010;text-decoration:underline}
+.nav-search{margin-left:auto;display:flex;gap:0.4rem;align-items:center}
+.nav-search input{border:1px solid #d8c8b8;border-radius:12px;padding:0.28rem 0.75rem;font-size:0.72rem;font-family:inherit;outline:none;background:#fffdf9;color:#5a4030;width:145px}
+.nav-search input:focus{border-color:#c9987a}
+.nav-search button{background:#c9987a;color:#fff;border:none;border-radius:12px;padding:0.28rem 0.7rem;font-size:0.7rem;cursor:pointer;font-family:inherit}
+.nav-search button:hover{background:#b07858}
+.container{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem}
+.back-link{display:inline-block;font-size:0.75rem;color:#8a6a50;text-decoration:none;margin-bottom:2rem}
+.back-link:hover{text-decoration:underline}
+.post-date{font-size:0.7rem;color:#b8a898;letter-spacing:0.15em;margin-bottom:0.5rem}
+.post-title-main{font-size:1.25rem;font-weight:normal;color:#3a2010;padding-bottom:1.2rem;border-bottom:1px solid #e8ddd0;margin-bottom:2rem}
+.post-body{color:#555;line-height:2.6;margin-bottom:2.5rem}
+.post-body p{margin-bottom:1.4rem}
+.tags{font-size:0.7rem;color:#b8a898;margin-top:2rem}
+.tag{display:inline-block;background:#f0e8dc;padding:0.2rem 0.5rem;margin:0.2rem 0.2rem 0 0;border-radius:2px;color:#8a7060}
+footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;border-top:1px solid #e8ddd0;margin-top:4rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="blog-title">かさねのにちじょう</div>
+  <div class="blog-sub">日々のできごとをつらつらと</div>
+</header>
+<nav>
+  <a href="blog.html">ホーム</a>
+  <a href="profile.html">プロフィール</a>
+  <form class="nav-search" onsubmit="goSearch(event)">
+    <input type="text" id="nav-q" placeholder="Tanuki Searchで調べる…">
+    <button type="submit">検索</button>
+  </form>
+</nav>
+<div class="container">
+  <a href="blog.html" class="back-link">← ホームへ戻る</a>
+  <div class="post-date">2024.03.19</div>
+  <div class="post-title-main">夫とドライブした日</div>
+  <div class="post-body">
+    <p>こんにちは、かさねです。</p>
+    <p>特に予定もなかった日曜日、夫が「どこか行く？」って聞いてきたので、じゃあドライブでもしようかと。行き先は決めないままとりあえず出発しました。</p>
+    <p>国道をのんびり走ってたら道の駅の看板が見えてきて、ふらっと寄ってみた。地元のお野菜が安くていっぱい売ってて、ついつい買いすぎてしまった。新玉ねぎと菜の花と、あとちょっと変わった形のにんじん。</p>
+    <p>お昼はその近くの定食屋さんで食べて、それだけで帰ってきた。本当に何もない一日だったけど、なんかとても充実してた気がした。</p>
+    <p>こういう、目的のない休日がいちばん好きかもしれない。また行こう。</p>
+  </div>
+  <div class="tags">
+    <span class="tag">#おでかけ</span>
+    <span class="tag">#ドライブ</span>
+    <span class="tag">#日常</span>
+  </div>
+</div>
+<footer>&copy; kasane's diary 2024 &nbsp;|&nbsp; 無断転載禁止</footer>
+<script>
+function goSearch(e) {
+  e.preventDefault();
+  const q = document.getElementById('nav-q').value.trim();
+  if (q) window.location.href = 'search.html#' + encodeURIComponent(q);
+}
+</script>
+</body>
+</html>
