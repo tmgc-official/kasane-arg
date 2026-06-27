@@ -21,7 +21,8 @@ header{border-bottom:1px solid #1e1812;padding:1.8rem 2rem 1.4rem;text-align:cen
 
 .photo-num{font-size:0.6rem;color:#3a2a1a;font-family:monospace;letter-spacing:0.15em;margin-bottom:0.4rem}
 .photo-wrap{margin:0.8rem 0 1.6rem}
-.photo-wrap img{width:100%;max-height:320px;object-fit:cover;display:block}
+.photo-wrap img{width:100%;max-height:min(320px,65vw);object-fit:cover;display:block}
+@media(max-width:480px){.container{padding:2rem 1rem 5rem}.entry{margin-bottom:3rem;padding-bottom:2.5rem}}
 
 .dark .entry-body{color:#a89888}
 .darker .entry-body{color:#988878}
