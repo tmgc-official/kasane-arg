@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>久しぶりにお散歩した｜かさねのにちじょう</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fafaf7;color:#333;font-family:'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro',Meiryo,sans-serif;font-size:15px;line-height:1.8}
+header{background:#fff;border-bottom:2px solid #e8ddd0;padding:1.5rem 2rem;text-align:center}
+.blog-title{font-size:1.5rem;font-weight:normal;color:#5a4030;letter-spacing:0.15em}
+.blog-sub{font-size:0.72rem;color:#b8a898;margin-top:0.3rem;letter-spacing:0.05em}
+nav{background:#f5ede0;padding:0.6rem 2rem;display:flex;gap:2rem;align-items:center;border-bottom:1px solid #e8ddd0;font-size:0.75rem;flex-wrap:wrap}
+nav a{color:#8a6a50;text-decoration:none}
+nav a:hover{color:#3a2010;text-decoration:underline}
+.nav-search{margin-left:auto;display:flex;gap:0.4rem;align-items:center}
+.nav-search input{border:1px solid #d8c8b8;border-radius:12px;padding:0.28rem 0.75rem;font-size:0.72rem;font-family:inherit;outline:none;background:#fffdf9;color:#5a4030;flex:1;min-width:80px}
+.nav-search input:focus{border-color:#c9987a}
+.nav-search button{background:#c9987a;color:#fff;border:none;border-radius:12px;padding:0.5rem 1rem;font-size:0.7rem;cursor:pointer;font-family:inherit;min-height:36px}
+.nav-search button:hover{background:#b07858}
+.container{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem}
+.back-link{display:inline-block;font-size:0.75rem;color:#8a6a50;text-decoration:none;margin-bottom:2rem}
+.back-link:hover{text-decoration:underline}
+.post-date{font-size:0.7rem;color:#b8a898;letter-spacing:0.15em;margin-bottom:0.5rem}
+.post-title-main{font-size:1.25rem;font-weight:normal;color:#3a2010;padding-bottom:1.2rem;border-bottom:1px solid #e8ddd0;margin-bottom:2rem}
+.post-body{color:#555;line-height:2.6;margin-bottom:2.5rem}
+.post-body p{margin-bottom:1.4rem}
+.post-body a{color:#c9987a;text-decoration:none}
+.post-body a:hover{text-decoration:underline}
+.tags{font-size:0.7rem;color:#b8a898;margin-top:2rem}
+.tag{display:inline-block;background:#f0e8dc;padding:0.2rem 0.5rem;margin:0.2rem 0.2rem 0 0;border-radius:2px;color:#8a7060}
+footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;border-top:1px solid #e8ddd0;margin-top:4rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="blog-title">かさねのにちじょう</div>
+  <div class="blog-sub">日々のできごとをつらつらと</div>
+</header>
+<nav>
+  <a href="blog.html">ホーム</a>
+  <a href="profile.html">プロフィール</a>
+  <form class="nav-search" onsubmit="goSearch(event)">
+    <input type="text" id="nav-q" placeholder="Tanuki Searchで調べる…">
+    <button type="submit">検索</button>
+  </form>
+</nav>
+<div class="container">
+  <a href="blog.html" class="back-link">← ホームへ戻る</a>
+  <div class="post-date">2024.04.28</div>
+  <div class="post-title-main">久しぶりにお散歩した</div>
+  <div class="post-body">
+    <p>こんにちは、かさねです。</p>
+    <p>ここ最近ずっと家にこもりがちだったんだけど、今日は朝起きたらなんとなく外に出たい気分で。出かける前に <a href="search.html#天気">Tanuki Search で「天気」を調べたら</a>、晴れのマークがついてたのでそのまま近所をぐるっと歩いてきました。</p>
+    <p>商店街の方を通ったら、シャッターが増えたなあという感じがして、すこし寂しかった。このあたり、最近なんとなく空気が重いというか。気のせいかな。</p>
+    <p>帰りにスーパーで甘夏を買って、帰宅してからひとりで食べた。すっぱくておいしかった。</p>
+    <p>こういう何もない日も、悪くないな。</p>
+  </div>
+  <div class="tags">
+    <span class="tag">#おでかけ</span>
+    <span class="tag">#日常</span>
+    <span class="tag">#散歩</span>
+  </div>
+</div>
+<footer>&copy; kasane's diary 2024 &nbsp;|&nbsp; 無断転載禁止<div style="font-size:0.58rem;color:#bbb;margin-top:0.5rem;padding-top:0.4rem;border-top:1px solid rgba(0,0,0,0.08)">本コンテンツはARG作品のためのフィクションです。登場人物・事件はすべて架空。画像にはAI生成を含みます。</div></footer>
+<script>
+function goSearch(e) {
+  e.preventDefault();
+  const q = document.getElementById('nav-q').value.trim();
+  if (q) window.location.href = 'search.html#' + encodeURIComponent(q);
+}
+</script>
+</body>
+</html>
