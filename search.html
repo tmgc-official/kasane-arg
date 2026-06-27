@@ -12,11 +12,11 @@ body{background:#fff;color:#222;font-family:'Hiragino Kaku Gothic Pro',Meiryo,sa
 .search-bar-wrap{flex:1;min-width:200px}
 .search-bar{width:100%;border:1px solid #ccc;border-radius:20px;padding:0.5rem 1rem;font-family:inherit;font-size:0.9rem;outline:none}
 .search-bar:focus{border-color:#4a4a8a;box-shadow:0 0 0 2px rgba(74,74,138,0.15)}
-.search-btn{background:#4a4a8a;color:#fff;border:none;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;font-size:0.85rem;white-space:nowrap}
+.search-btn{background:#4a4a8a;color:#fff;border:none;padding:0.5rem 1rem;border-radius:20px;cursor:pointer;font-size:0.85rem;white-space:nowrap;min-height:40px}
 .search-tabs{display:flex;gap:0;border-bottom:1px solid #e0e0e0;padding:0 1.5rem}
 .tab{padding:0.7rem 1.2rem;font-size:0.82rem;color:#555;cursor:pointer;border-bottom:2px solid transparent}
 .tab.active{color:#4a4a8a;border-bottom-color:#4a4a8a}
-.results-wrap{max-width:680px;padding:1.5rem}
+.results-wrap{max-width:680px;padding:1.5rem;width:100%}
 .result-count{font-size:0.78rem;color:#777;margin-bottom:1.5rem}
 .result-item{margin-bottom:2rem}
 .result-url{font-size:0.72rem;color:#1a6b1a;margin-bottom:0.15rem;word-break:break-all}
@@ -72,9 +72,9 @@ const DATA = [
   {
     keywords: ['草凪', '草凪雪', 'くさなぎ', 'くさなぎゆき', '学生証'],
     url: 'kusanagi-id.html',
-    displayUrl: '○○高等学校 > 在籍情報 > 2024-0318',
-    title: '草凪 雪 — 在籍情報｜○○高等学校',
-    snippet: '氏名：<em>草凪 雪</em>（くさなぎ ゆき）。学籍番号：2024-0318。第2学年3組。図書委員。最終更新：2024年1月。※このページは学内関係者のみ閲覧可能です。'
+    displayUrl: '聖鈴ヶ丘高等学校 > 在籍情報 > 2-3-17',
+    title: '草凪 雪 — 在籍情報｜聖鈴ヶ丘高等学校',
+    snippet: '氏名：<em>草凪 雪</em>（くさなぎ ゆき）。学籍番号：2-3-17。第2学年3組。図書委員。最終更新：2024年1月。※このページは学内関係者のみ閲覧可能です。'
   },
   {
     keywords: ['大井戸', '大井戸公園', '公園'],
