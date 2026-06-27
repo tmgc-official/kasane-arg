@@ -18,7 +18,8 @@ body{background:#f0e8f5;color:#333;font-family:'Hiragino Kaku Gothic Pro',Meiryo
 .profile-card{background:#fff;border:2px solid #d8a8e8;border-radius:8px;overflow:hidden}
 
 .profile-header{background:linear-gradient(135deg,#e8c0f8,#d4a0e8);padding:1.2rem;text-align:center;border-bottom:1px solid #d8a8e8}
-.profile-icon{width:64px;height:64px;border-radius:50%;background:#c084d8;margin:0 auto 0.6rem;display:flex;align-items:center;justify-content:center;font-size:1.8rem;border:3px solid #fff}
+.profile-icon{width:72px;height:72px;border-radius:50%;margin:0 auto 0.6rem;border:3px solid #fff;overflow:hidden;background:#c084d8}
+.profile-icon img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
 .profile-nick{font-size:1rem;font-weight:bold;color:#6a1a8a;letter-spacing:0.1em}
 .profile-id{font-size:0.6rem;color:#9a6aaa;margin-top:0.2rem;letter-spacing:0.1em}
 
@@ -37,6 +38,8 @@ body{background:#f0e8f5;color:#333;font-family:'Hiragino Kaku Gothic Pro',Meiryo
 .zenryaku-nav span{opacity:0.7;cursor:default}
 
 footer{text-align:center;padding:1.5rem 1rem;font-size:0.58rem;color:#aaa;margin-top:2rem}
+.back-link{display:inline-block;font-size:0.72rem;color:#9a6aaa;text-decoration:none;cursor:pointer;margin:1rem 0 0.5rem;letter-spacing:0.05em}
+.back-link:hover{color:#6a1a8a;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -52,16 +55,17 @@ footer{text-align:center;padding:1.5rem 1rem;font-size:0.58rem;color:#aaa;margin
 </div>
 
 <div class="profile-wrap">
+  <a class="back-link" onclick="history.back();return false;" href="#">← 検索結果に戻る</a>
   <div class="profile-card">
     <div class="profile-header">
-      <div class="profile-icon">❄</div>
+      <div class="profile-icon"><img src="images/yuki-face.jpg.png" alt="ゆきちゃん" onerror="this.parentElement.innerHTML='❄'"></div>
       <div class="profile-nick">ゆきちゃん</div>
     </div>
 
     <table class="profile-table">
       <tr>
         <td class="label">名前</td>
-        <td class="value garbled">▶︎θ↓◉⇔％</td>
+        <td class="value garbled">▶︎θ↓◉↔︎％</td>
       </tr>
       <tr>
         <td class="label">ニックネーム</td>
@@ -81,7 +85,7 @@ footer{text-align:center;padding:1.5rem 1rem;font-size:0.58rem;color:#aaa;margin
       </tr>
       <tr>
         <td class="label">好きな食べ物</td>
-        <td class="value garbled">θ◇＆＊×◯</td>
+        <td class="value garbled">θ◇＆＊×Ψ</td>
       </tr>
       <tr>
         <td class="label">嫌いな食べ物</td>
@@ -97,7 +101,7 @@ footer{text-align:center;padding:1.5rem 1rem;font-size:0.58rem;color:#aaa;margin
       </tr>
       <tr>
         <td class="label">好きな季節</td>
-        <td class="value garbled">▲⇔</td>
+        <td class="value garbled">▲↔︎</td>
       </tr>
       <tr>
         <td class="label">趣味</td>
