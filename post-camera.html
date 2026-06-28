@@ -150,7 +150,7 @@ footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;
       </div>
       <div class="viewer-controls">
         <span class="s-label">明るさ</span>
-        <input type="range" min="50" max="800" value="100" id="viewer-slider"
+        <input type="range" min="1" max="800" value="100" id="viewer-slider"
                oninput="document.getElementById('viewer-content').style.filter='brightness('+this.value+'%)'">
       </div>
     </div>
@@ -183,7 +183,7 @@ function renderPhoto(i) {
   const content = document.getElementById('viewer-content');
   const frame = document.getElementById('viewer-frame');
 
-  const initBrightness = (i === 21 || i === 22 || i === 23) ? 5 : 100;
+  const initBrightness = (i === 21 || i === 22 || i === 23) ? 2 : 100;
   document.getElementById('viewer-slider').value = initBrightness;
   content.style.filter = `brightness(${initBrightness}%)`;
   document.getElementById('viewer-num').textContent = n;
