@@ -153,6 +153,13 @@ footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;
         <input type="range" min="1" max="800" value="100" id="viewer-slider"
                oninput="document.getElementById('viewer-content').style.filter='brightness('+this.value+'%)'">
       </div>
+      <div class="viewer-controls" style="margin-top:0.6rem">
+        <span class="s-label">枚目に移動</span>
+        <input type="number" id="jump-input" min="1" max="24" placeholder="1〜24"
+               style="width:4.5rem;background:#fafaf7;border:1px solid #d8c8b8;border-radius:2px;padding:0.3rem 0.5rem;font-size:0.8rem;font-family:inherit;color:#5a4030;outline:none"
+               onkeydown="if(event.key==='Enter')jumpToPhoto()">
+        <button class="nav-btn" style="padding:0.35rem 0.9rem;min-height:36px;font-size:0.7rem" onclick="jumpToPhoto()">移動</button>
+      </div>
     </div>
   </div>
 
@@ -202,6 +209,10 @@ function renderPhoto(i) {
 
 function nextPhoto() { if (cur < 24) renderPhoto(cur + 1); }
 function prevPhoto() { if (cur > 1) renderPhoto(cur - 1); }
+function jumpToPhoto() {
+  const v = parseInt(document.getElementById('jump-input').value, 10);
+  if (v >= 1 && v <= 24) { renderPhoto(v); document.getElementById('jump-input').value = ''; }
+}
 
 function goSearch(e) {
   e.preventDefault();
