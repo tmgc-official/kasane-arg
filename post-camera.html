@@ -183,8 +183,9 @@ function renderPhoto(i) {
   const content = document.getElementById('viewer-content');
   const frame = document.getElementById('viewer-frame');
 
-  document.getElementById('viewer-slider').value = 100;
-  content.style.filter = 'brightness(100%)';
+  const initBrightness = (i === 22 || i === 23) ? 10 : 100;
+  document.getElementById('viewer-slider').value = initBrightness;
+  content.style.filter = `brightness(${initBrightness}%)`;
   document.getElementById('viewer-num').textContent = n;
   document.getElementById('prev-btn').disabled = (i === 1);
   document.getElementById('next-btn').disabled = (i === 24);
