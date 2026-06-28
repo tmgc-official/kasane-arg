@@ -192,8 +192,6 @@ function renderPhoto(i) {
 
   if (i === 24) {
     content.innerHTML = '<div class="screen-photo"><div class="chrome-toolbar"><div class="chrome-urlwrap"><div class="chrome-icon"></div><div class="chrome-url">▒▒▒▒:▓░▒▓░▒▓░▒▓░▒▓░▒/secret.html</div></div></div><div class="chrome-page"><div class="chrome-text">返してください</div></div></div>';
-  } else if (i === 23) {
-    content.innerHTML = '<div style="width:100%;height:100%;background:#010101"></div>';
   } else {
     content.innerHTML = `<img src="images/photos${n}.jpg.png" alt="写真${n}"
       onload="this.style.opacity='1'"
