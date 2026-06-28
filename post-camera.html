@@ -94,6 +94,12 @@ input[type=range]{flex:1;height:6px;cursor:pointer;accent-color:#c9987a;touch-ac
 .back-link{display:inline-block;font-size:0.75rem;color:#8a6a50;text-decoration:none;margin-bottom:2rem}
 .back-link:hover{text-decoration:underline}
 
+.post-nav{display:flex;justify-content:space-between;align-items:flex-start;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #e8ddd0;gap:1rem}
+.post-nav a{font-size:0.75rem;color:#8a6a50;text-decoration:none;line-height:1.6;max-width:46%}
+.post-nav a:hover{color:#3a2010;text-decoration:underline}
+.post-nav .nav-label{font-size:0.62rem;color:#b8a898;display:block;margin-bottom:0.15rem;letter-spacing:0.1em}
+.post-nav .nav-next{text-align:right;margin-left:auto}
+@media(max-width:480px){.post-nav a{max-width:100%}.post-nav .nav-next{text-align:left;margin-left:0}}
 footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;border-top:1px solid #e8ddd0;margin-top:4rem}
 </style>
 </head>
@@ -156,6 +162,10 @@ footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;
     <span class="tag">#商店街</span>
     <span class="tag">#拾いもの</span>
     <span class="tag">#現像</span>
+  </div>
+  <div class="post-nav">
+    <a href="post-04.html" class="nav-prev"><span class="nav-label">← 前の記事</span>好きなマグカップが割れた話</a>
+    <a href="post-03.html" class="nav-next"><span class="nav-label">次の記事 →</span>近所の古着屋さんでジャケットを買った</a>
   </div>
 </div>
 

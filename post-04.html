@@ -28,6 +28,12 @@ nav a:hover{color:#3a2010;text-decoration:underline}
 .post-body p{margin-bottom:1.4rem}
 .tags{font-size:0.7rem;color:#b8a898;margin-top:2rem}
 .tag{display:inline-block;background:#f0e8dc;padding:0.2rem 0.5rem;margin:0.2rem 0.2rem 0 0;border-radius:2px;color:#8a7060}
+.post-nav{display:flex;justify-content:space-between;align-items:flex-start;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #e8ddd0;gap:1rem}
+.post-nav a{font-size:0.75rem;color:#8a6a50;text-decoration:none;line-height:1.6;max-width:46%}
+.post-nav a:hover{color:#3a2010;text-decoration:underline}
+.post-nav .nav-label{font-size:0.62rem;color:#b8a898;display:block;margin-bottom:0.15rem;letter-spacing:0.1em}
+.post-nav .nav-next{text-align:right;margin-left:auto}
+@media(max-width:480px){.post-nav a{max-width:100%}.post-nav .nav-next{text-align:left;margin-left:0}}
 footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;border-top:1px solid #e8ddd0;margin-top:4rem}
 </style>
 </head>
@@ -60,6 +66,10 @@ footer{text-align:center;padding:3rem 1rem 2rem;font-size:0.65rem;color:#c0b0a0;
     <span class="tag">#日常</span>
     <span class="tag">#雑記</span>
     <span class="tag">#コーヒー</span>
+  </div>
+  <div class="post-nav">
+    <a href="post-05.html" class="nav-prev"><span class="nav-label">← 前の記事</span>夫とドライブした日</a>
+    <a href="post-camera.html" class="nav-next"><span class="nav-label">次の記事 →</span>拾ったフィルムカメラを現像してみた</a>
   </div>
 </div>
 <footer>&copy; kasane's diary 2024 &nbsp;|&nbsp; 無断転載禁止<div style="font-size:0.58rem;color:#bbb;margin-top:0.5rem;padding-top:0.4rem;border-top:1px solid rgba(0,0,0,0.08)">本コンテンツはARG作品のためのフィクションです。登場人物・事件はすべて架空。画像にはAI生成を含みます。</div></footer>
