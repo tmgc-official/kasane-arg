@@ -191,7 +191,7 @@ function renderPhoto(i) {
   const frame = document.getElementById('viewer-frame');
 
   content.innerHTML = '';
-  const initBrightness = (i === 21 || i === 22 || i === 23) ? 2 : 100;
+  const initBrightness = i >= 21 ? 1 : 100;
   document.getElementById('viewer-slider').value = initBrightness;
   content.style.filter = `brightness(${initBrightness}%)`;
   document.getElementById('viewer-num').textContent = n;
